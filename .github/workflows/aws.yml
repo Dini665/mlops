@@ -6,7 +6,7 @@ on:
 
 env:
   AWS_REGION: eu-west-3                 # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: Abdou/dini           # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: dini           # set this to your Amazon ECR repository name
   ECS_SERVICE: diniService                 # set this to your Amazon ECS service name
   ECS_CLUSTER: dinicluster2                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: diniCatboost # set this to the path to your Amazon ECS task definition
