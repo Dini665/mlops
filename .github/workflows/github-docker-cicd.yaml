@@ -19,7 +19,11 @@ cd_pipeline:
       run: echo "date=$(date +'%Y-%m-%d-%H-%M')" >> "$GITHUB_OUTPUT"
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag "$DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}"
+      run: |
+        REPO_NAME_LOWER=$(echo "$REPO_NAME" | tr '[:upper:]' '[:lower:]')
+        docker build . --file Dockerfile --tag "$DOCKER_USER/$REPO_NAME_LOWER:${{ steps.date.outputs.date }}"
 
     - name: Docker Push
-      run: docker push "$DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}"
+      run: |
+        REPO_NAME_LOWER=$(echo "$REPO_NAME" | tr '[:upper:]' '[:lower:]')
+        docker push "$DOCKER_USER/$REPO_NAME_LOWER:${{ steps.date.outputs.date }}"
